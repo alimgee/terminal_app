@@ -20,28 +20,41 @@ class Game:
         self.current_room = 0
         self.inventory = []
 
-    def print_slow(self, str):
+    def print_slow(self, str, color=None):
+        if color:
+            if color == "red":
+                str = f"\033[31m{str}\033[0m"
+            elif color == "green":
+                str = f"\033[32m{str}\033[0m"
+            elif color == "yellow":
+                str = f"\033[33m{str}\033[0m"
+            elif color == "blue":
+                str = f"\033[34m{str}\033[0m"
+            elif color == "magenta":
+                str = f"\033[35m{str}\033[0m"
+            elif color == "cyan":
+                str = f"\033[36m{str}\033[0m"
         for letter in str:
             sys.stdout.write(letter)
             sys.stdout.flush()
             sleep(0.1)
 
     def play(self):
-        self.print_slow("Welcome to the scary adventure game!\n")
-        self.print_slow("You are in a house with 5 rooms.\n")
+        self.print_slow("Welcome to the scary adventure game!\n", "green")
+        self.print_slow("You are in a house with 5 rooms.\n", "green")
 
         while True:
             room = self.rooms[self.current_room]
-            self.print_slow(f"You are in the {room.name}. {room.description}\n")
-            self.print_slow(f"There is a {room.item} here.\n")
-            self.print_slow("What would you like to do?\n")
-            self.print_slow("1. Go to the next room\n")
-            self.print_slow("2. Go to the previous room\n")
-            self.print_slow("3. Look around\n")
-            self.print_slow("4. Pick up item\n")
-            self.print_slow("5. Use item\n")
-            self.print_slow("6. Check inventory\n")
-            self.print_slow("7. Exit the game\n")
+            self.print_slow(f"You are in the {room.name}. {room.description}\n", "green")
+            self.print_slow(f"There is a {room.item} here.\n", "green")
+            self.print_slow("What would you like to do?\n","green")
+            self.print_slow("1. Go to the next room\n", "cyan")
+            self.print_slow("2. Go to the previous room\n", "cyan")
+            self.print_slow("3. Look around\n", "cyan")
+            self.print_slow("4. Pick up item\n", "cyan")
+            self.print_slow("5. Use item\n", "cyan")
+            self.print_slow("6. Check inventory\n", "cyan")
+            self.print_slow("7. Exit the game\n", "red")
 
             choice = input()
 
